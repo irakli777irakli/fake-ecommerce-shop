@@ -9,6 +9,8 @@ namespace API.Controllers
 {
     [ApiController]
     [Route("[controller]")]
+    // wsagger ignore this endpoint
+    [ApiExplorerSettings(IgnoreApi = true)]
     public class WeatherForecastController : ControllerBase
     {
         private static readonly string[] Summaries = new[]
