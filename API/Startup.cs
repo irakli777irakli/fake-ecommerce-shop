@@ -35,7 +35,17 @@ namespace API
 
             // swagger extension class
             services.AddSwaggerDocumentation();
-        }
+            services.AddCors(opt => 
+            {
+                opt.AddPolicy("CorsPolicy",policy => 
+                {
+                    policy.AllowAnyHeader()
+                    .AllowAnyMethod()
+                    .WithOrigins("http://localhost:4200");
+                });
+            });
+       
+       }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -45,10 +55,11 @@ namespace API
             // when endpoint does not exists
             app.UseStatusCodePagesWithReExecute("/errors/{0}");
 
-            app.UseHttpsRedirection();
+            // app.UseHttpsRedirection();
 
             app.UseRouting();
             app.UseStaticFiles();
+            app.UseCors("CorsPolicy");
 
             app.UseAuthorization();
 
