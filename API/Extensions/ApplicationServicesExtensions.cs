@@ -13,7 +13,9 @@ namespace API.Extensions
         {
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped(typeof(IGenericRepository<>),typeof(GenericRepository<>));
+            services.AddScoped<IBasketRepository,BasketRepository>();
 
+            
             // configurin validaiton errors
             // where id is require
             // password is required stuff
