@@ -19,6 +19,19 @@ const routes: Routes = [
    .then(mod => mod.ShopModule),
   data: {breadcrumb: 'Shop'}
   },
+  // lazy loading Basket module, related components
+  {path: 'basket',loadChildren: () =>
+    import('./basket/basket.module')
+    .then(mod => mod.BasketModule),
+    data: {breadcrumb: 'Basket'}
+  },
+
+  // checkout lazy loading
+  {path: 'checkout',loadChildren: () =>
+  import('./checkout/checkout.module')
+  .then(mod => mod.CheckoutModule),
+  data: {breadcrumb: 'Checkout'}
+  },
   {path: '**',redirectTo: 'not-found',pathMatch:'full'},
 
 ];
